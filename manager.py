@@ -84,17 +84,18 @@ class Judge:
         item_pos = int(item_topic.replace('items/', '')) - 1       
         item_value = int(rest)        
         last_value = self.lst_results[item_pos]
-        
-        self.lst_results[item_pos] = max(last_value, item_value)
-        self.lst_names[item_pos] = str(bid_owner)
+
+        if last_value < item_value:
+            self.lst_results[item_pos] = item_value
+            self.lst_names[item_pos] = bid_owner
         
         current_value = self.lst_results[item_pos]
                 
         self.client.publish(result_topic,
-                            str(current_value) + ' ' + str(bid_owner))
+                            str(current_value) + ' ' + str(self.lst_names[item_pos]))
         print('New winner for',
               str(msg.topic).replace('items/', 'item '),
-              ':', bid_owner)
+              ':', self.lst_names[item_pos])
 
 
     def self_process(self, topic):        
@@ -123,7 +124,7 @@ class Judge:
 if __name__ == '__main__':
     BROKER = 'localhost'
    
-    manager = Judge(60, BROKER, auth = ("manager", "managerpassword"))
+    manager = Judge(1000, BROKER, auth = ("manager", "managerpassword"))
     manager.start()
     
 
