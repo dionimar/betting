@@ -34,6 +34,6 @@ class Seller:
 
 if __name__ == '__main__':
 
-    seller = Seller(5, 'localhost', auth = ("seller", "sellerpassword"))
+    seller = Seller(3, 'localhost', auth = ("seller", "sellerpassword"))
     seller.sell()
 
