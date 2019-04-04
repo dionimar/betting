@@ -89,8 +89,9 @@ class Bettor:
 
                 
     def bet_process_interact(self):        
-        (usr, pwd) = self.auth       
-        while True:
+        (usr, pwd) = self.auth
+        alive = True
+        while alive:
             cuantity = self.get_input()
             
             publish.single('items/' + str(self.interest_objects),
@@ -98,6 +99,8 @@ class Bettor:
                            hostname = self.broker,
                            auth = {'username':usr, 'password':pwd})
             self.money -= int(cuantity)
+            alive = self.money != 0
+        print('Out of money, you are out!')
 
     def parse_list(self, elem):
         return str(elem) in self.lst
@@ -132,7 +135,7 @@ if __name__=='__main__':
     BROKER = 'localhost'
     
     bettor1 = Bettor(name = 'Alice', money = 1500,
-                     broker = BROKER, auth = ("Alice", "Alicepassword"), interact = False)
+                     broker = BROKER, auth = ("Alice", "Alicepassword"), interact = True)
     # bettor2 = Bettor(name = 'Bob', money = 2000,
     #                  broker = BROKER, auth = ("Bob", "Bobpassword"))
     # bettor3 = Bettor(name = 'Marc', money = 1000,
