@@ -1,7 +1,5 @@
 from paho.mqtt.client import Client
 from multiprocessing import Process
-from multiprocessing import Lock
-from multiprocessing import Array
 import time, random
 
 class Seller:
