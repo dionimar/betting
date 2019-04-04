@@ -1,0 +1,61 @@
+# File containing ACL:
+# USER username
+# TOPIC topic/topics...
+
+# user can only read from topics
+# generic users can only write on all topics except in results
+# topic readwrite articles/#
+
+user seller
+topic write Available-items
+
+user manager
+topic read items/#
+topic read Available-items
+topic write results/#
+
+user Alice
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Bob
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Marc
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Sheyla
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Aly
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Jenny
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user John
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user Justin
+topic write items/#
+topic read Available-items
+topic read results/#
+
+user observer
+topic read results/#
+
+
+
