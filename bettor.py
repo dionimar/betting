@@ -8,7 +8,8 @@ import random, time
 
 class Bettor:
    
-    def __init__(self, name, money, broker = 'localhost', auth = None, interact = False):
+    def __init__(self, name, money, broker = 'localhost',
+                 auth = None, interact = False):
         self.name = name
         self.lock = Lock()
         self.money = money
